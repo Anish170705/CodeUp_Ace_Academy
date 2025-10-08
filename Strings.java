@@ -158,8 +158,10 @@ class Strings{
        Scanner sc=new Scanner(System.in);
        System.out.println("Enter the String :");
        a1.curr=sc.next();
-       System.out.println("1. Append\n2. CountWords\n3. Replace\n4. isPalindrome\n5. Splice\n6. Split\n7. MaxRepeatingCharacter\n8. Sort\n9. Shift\n10.Reverse\n");
-    int n;
+       System.out.println("Choose operation:");
+       System.out.println("1. Append\n2. CountWords\n3. Replace\n4. isPalindrome\n5. Splice\n6. Split\n7. MaxRepeatingCharacter\n8. Sort\n9. Shift\n10.Reverse\n0.Exit");
+   while(true){ int n;
+    System.out.println("Enter your choice:");
     n=sc.nextInt();
     switch (n) {
         case 1 :
@@ -206,9 +208,11 @@ class Strings{
          case 10 :
         System.out.println(a1.reverse());
             break;
-                
+        case 0:
+        System.out.println("Exit");
+        return ;       
         default:
             break;
-    }
+    }}
     }    
 }
