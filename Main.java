@@ -4,14 +4,14 @@
  * @author - Anish Saini 
  */
 import java.util.Scanner;
-
+import java.util.ArrayList;
 class Main{
      public static void main(String[] args)
     {
         
         System.out.println("Enter the String :");
         Scanner sc=new Scanner(System.in);
-      String input=sc.next();
+      String input=sc.nextLine();
        MyString a1=new MyString(input);
        
        System.out.println("Choose operation:");
@@ -19,6 +19,7 @@ class Main{
    while(true){ int n;
     System.out.println("Enter your choice:");
     n=sc.nextInt();
+    sc.nextLine();
     switch (n) {
         case 1 :
         System.out.println("Enter the append string:");
@@ -26,43 +27,48 @@ class Main{
         System.out.println("The new String :" +a1.append(p));
             break;
         case 2 :
-        System.out.println("The count word :"+a1.countWords());
+        System.out.println("Total no. word :"+a1.countWords());
             break;
         case 3 :
         System.out.println("The word is:");
          String a=sc.next();
          System.out.println("replaced by :");
          String k=sc.next();
-        System.out.println(a1.replace(a,k));
+        System.out.println("Result:"+a1.replace(a,k));
             break;
         case 4 :
-        System.out.println(a1.isPalindrome());
+        System.out.println("Palindrome:"+a1.isPalindrome());
         break;
         case 5 :
         System.out.println("Enter starting index and length to splice");
         int start=sc.nextInt();
         int len=sc.nextInt();
-        System.out.println(a1.splice(start,len));
+        System.out.println("Result:"+a1.splice(start,len));
             break;
         
         case 6 :
-        System.out.println("Enter the string which you want to split:");
-        String text=sc.nextLine();
-        System.out.println(a1.split(text));
-            break;
+        System.out.print("Enter character to split by: ");
+                    String delimInput = sc.nextLine();
+                    char delim = delimInput.isEmpty() ? ' ' : delimInput.charAt(0);
+                    ArrayList<String> arr = a1.split(delim);
+                    
+                    for(int i=0;i<arr.size();i++){
+                        System.out.println(arr.get(i));
+                    }
+                    break;
          case 7 :
         System.out.println(a1.maxReapet());
             break;
          case 8 :
-        System.out.println(a1.sort());
+        System.out.println("Sorted String:"+a1.sort());
             break;
          case 9 :
          System.out.println("Enter the no. of shift:");
          int b=sc.nextInt();
-        System.out.println(a1.shift(b));
+        System.out.println("After Shift:"+a1.shift(b));
             break;
          case 10 :
-        System.out.println(a1.reverse());
+        System.out.println("After reverse:"+a1.reverse());
             break;
         case 0:
         System.out.println("Exit");

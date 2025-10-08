@@ -7,7 +7,7 @@
 import java.util.*;
 
 class MyString{
-    String curr=""; 
+    private String curr="MyString"; 
     MyString(){}
     MyString(String s)
     {
@@ -96,11 +96,24 @@ class MyString{
     return ans;
     }
 
-    public String[] split(String pattern)
-    {
-           String[] word=curr.trim().split("\\s+");
-           return word;
+   public ArrayList<String> split(char element) {
+    ArrayList<String> parts = new ArrayList<>();
+    StringBuilder cur = new StringBuilder();
+
+    for (int i = 0; i < curr.length(); i++) {
+        char ch = curr.charAt(i);
+        if (ch == element) {
+            parts.add(cur.toString());
+            cur.setLength(0); 
+        } else {
+            cur.append(ch);
+        }
     }
+
+    parts.add(cur.toString());
+
+    return parts;
+}
 
     public String maxReapet()
 {
