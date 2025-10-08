@@ -1,78 +1,77 @@
 /**
  * @filename - MyString.java
- * @description - This will perform most of the string operation
+ * @description - This will perform most of the string operation : Append, CountWords, Replace, isPalindrome,
+    Splice, Split, MaxRepeatingCharacter, Sort, Shift, and Reverse
  * @author - Anish Saini 
- * 
  */
-import java.util.*;
 
-class MyString{
-    private String curr="MyString"; 
-    MyString(){}
-    MyString(String s)
-    {
-        curr=s;
-    }
-    public String append(String newString)
-    {
-        
-        curr+=" "+newString;
-        return curr;
-    }
-    public int countWords()
-    {
-       if(curr==null || curr.trim().isEmpty())
-       return 0;
+ class MyString{
+    private String inputString = "MyString"; 
 
-       String[] word=curr.trim().split("\\s+");
-       return word.length;
+    MyString(String userInput)
+    {
+        this.inputString = userInput;
+    }
+    @Override
+    public String toString(){
+        return this.inputString;
+    }
+    public String append(String newString){
+        this.inputString += " " + newString;
+        return this.inputString;
+    }
+    public int countWords(){
+        int count = 0;
+        boolean inWord = false;
+        for (int i = 0; i < this.inputString.length(); i++) {
+            char ch = this.inputString.charAt(i);
+            if (ch != ' ' && ch != '\t') {
+                if (!inWord) {
+                    count++;
+                    inWord = true;
+                }
+            } else {
+                inWord = false;
+            }
+        }
+        return count;
     }
     public String replace(String a,String b)
     {
-        String s="";
-        int flag=0;
-       int i=0;
-       while(i<curr.length())
-       {
-        if(curr.charAt(i)==a.charAt(0))
-        {flag=0;
-            String p="";
-            for(int k=0;k<a.length();k++)
-            {
-                if(i<curr.length() && curr.charAt(i)==a.charAt(k))
-                {
-                    
-                    p+=curr.charAt(i);
+        String newString = "";
+        int flag = 0;
+        int i = 0;
+        while(i < this.inputString.length())
+        {
+        if(this.inputString.charAt(i) ==  a.charAt(0)){
+            flag = 0;
+            String tempString = "";
+            for(int k = 0; k < a.length(); k++){
+                if(i < this.inputString.length() && inputString.charAt(i) == a.charAt(k)){ 
+                    tempString += this.inputString.charAt(i);
                     i++;
-                }
-                else
-                {
-                    flag=1;
+                } else {
+                    flag = 1;
                     break;
                 }
             }
-            if(flag==1)
-            {
-                s+=p;
-            }
-            else
-            s+=b;
-        }
-        else
-        {
-            s+=curr.charAt(i);
-            i++;
+            if(flag == 1){
+                newString += tempString;
+            } else{
+                newString +=  b; }
+        }  else{
+           newString += this.inputString.charAt(i);
+           i++; 
         }
        }
-       return s;
+       return newString;
     }
     public boolean isPalindrome()
     {
-        int i=0;
-        int j=curr.length()-1;
-        while(i<j)
-        {
-            if(curr.charAt(i)!=curr.charAt(j))
+        int i = 0;
+        int j = this.inputString.length() - 1;
+        while(i < j){
+            if(this.inputString.charAt(i) != this.inputString.charAt(j))
             return false;
             i++;
             j--;
@@ -82,99 +81,94 @@ class MyString{
 
     public String splice(int start,int len)
     {
-        int i=0;
-    String ans="";
-    while(i<curr.length())
-    {
-        if(i>=start&&i<start+len)
-        {i++;
-            continue;}
-        ans+=curr.charAt(i);
-        i++;
-
-    }
-    return ans;
-    }
-
-   public ArrayList<String> split(char element) {
-    ArrayList<String> parts = new ArrayList<>();
-    StringBuilder cur = new StringBuilder();
-
-    for (int i = 0; i < curr.length(); i++) {
-        char ch = curr.charAt(i);
-        if (ch == element) {
-            parts.add(cur.toString());
-            cur.setLength(0); 
-        } else {
-            cur.append(ch);
+        int i = 0;
+        String ans = "";
+        while(i < this.inputString.length())
+        {
+        if(i >= start && i < start + len){   
+            i++;
+            continue;
         }
+        ans += this.inputString.charAt(i);
+        i++;
+        }
+        return ans;
     }
 
-    parts.add(cur.toString());
+   public String[] split(char element) {
+        int parts = 1;
+        for (int i = 0; i < this.inputString.length(); i++) {
+            if (this.inputString.charAt(i) == element)
+                parts++;
+        }
 
-    return parts;
-}
+        String[] result = new String[parts];
+        for (int i = 0; i < parts; i++) 
+            result[i] = "";
 
-    public String maxReapet()
-{
-    int[]freq=new int[256];
-    int max=0;
-    char maxchar=' ';
-    for(int i=0;i<curr.length();i++)
+        int idx = 0;
+        for (int i = 0; i < this.inputString.length(); i++) {
+            if (this.inputString.charAt(i) == element)
+                idx++;
+            else 
+                result[idx] += this.inputString.charAt(i);
+        }
+        return result;
+    }
+    public char maxReapetCharacter()
     {
-        char ch=curr.charAt(i);
-        if(ch!=' '){
+    int[]freq = new int[256];
+    int max = 0;
+    char maxchar = ' ';
+    for(int i = 0;i < this.inputString.length();i++)
+    {
+        char ch = this.inputString.charAt(i);
+        if(ch != ' '){
             freq[ch]++;
-            if(freq[ch]>max)
+            if(freq[ch] > max)
             {
-                max=freq[ch];
-                maxchar=ch;
+                max = freq[ch];
+                maxchar = ch;
             }
         }
     }
-    return "Max Repeated character is : "+maxchar+" count is: "+max;
+    return maxchar;
 
 }
     public String sort()
     {
-        char[] c=curr.toCharArray();
-        for(int i=0;i< c.length-1;i++)
-        {
-            for(int j=0;i<c.length-i-1;j++)
-            {
-                if(c[j]>c[j+1])
-                {
-                    char temp=c[j];
-                    c[j]=c[j+1];
-                    c[j+1]=temp;
+        char[] c=this.inputString.toCharArray();
+        for (int i = 0; i < c.length - 1; i++) {
+            for (int j = 0; j < c.length - i - 1; j++) { 
+                if (c[j] > c[j + 1]) {
+                char temp = c[j];
+                c[j] = c[j + 1];
+                c[j + 1] = temp;
                 }
-            }
+            }   
         }
         return new String(c);
     }
-    public String shift(int n)
+    public String shift(int choice)
     {
-        String ans="";
-        n=n%curr.length();
-        if(n==0)
-        return curr;
-        int n1=curr.length();
-        for(int i=n1-n;i<n1;i++)
-        {
-            ans+=curr.charAt(i);
+        String ans = "";
+        choice = choice % this.inputString.length();
+        if(choice == 0)
+        return this.inputString;
+        int n1 = this.inputString.length();
+        for(int i = n1-choice;i < n1;i++){
+            ans += this.inputString.charAt(i);
         }
-        for(int i=0;i<(n1-n);i++)
-        ans+=curr.charAt(i);
+        for(int i = 0;i < (n1-choice);i++)
+        ans+=this.inputString.charAt(i);
         return ans;
     }
     public String reverse()
     {
-        String newstr="";
-        for(int i=curr.length()-1;i>=0;i--)     
-        {
-            newstr+=curr.charAt(i);
+        String newString = "";
+        for(int i = this.inputString.length() - 1;i >= 0;i--){
+            newString += this.inputString.charAt(i);
         }
-        return newstr;
+        return newString;
     }
-       
 }
