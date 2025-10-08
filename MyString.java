@@ -7,7 +7,7 @@
 import java.util.*;
 
 class MyString{
-    String curr=""; 
+    String curr="MyString"; 
     MyString(){}
     MyString(String s)
     {

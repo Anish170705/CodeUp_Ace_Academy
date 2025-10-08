@@ -26,7 +26,7 @@ class Main{
         System.out.println("The new String :" +a1.append(p));
             break;
         case 2 :
-        System.out.println("The count word :"+a1.countWords());
+        System.out.println("Total no. word :"+a1.countWords());
             break;
         case 3 :
         System.out.println("The word is:");
