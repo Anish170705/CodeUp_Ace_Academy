@@ -1,9 +1,3 @@
-/**
- * @filename - Main.java
- * @description - This will perform most of the string operation  : Append, CountWords, Replace, isPalindrome,
-    Splice, Split, MaxRepeatingCharacter, Sort, Shift, and Reverse
- * @author - Anish Saini 
- */
 import java.util.Scanner;
 class Main{
     public static void main(String[] args){
@@ -12,9 +6,8 @@ class Main{
         Scanner userInput = new Scanner(System.in);
         String input=userInput.nextLine();
         MyString operation=new MyString(input);
-
-        while(true){
-            System.out.println("Choose operation:");
+       
+        System.out.println("Choose operation:");
         System.out.println("""
                             1. Append
                             2. Count Words
@@ -28,12 +21,12 @@ class Main{
                             10. Reverse
                             0. Exit
                             """);
+
+        while(true){
             int choice;
             System.out.println("Enter your choice:");
-            if(userInput.hasNextInt()) {
             choice=userInput.nextInt();
             userInput.nextLine();
-            
             switch (choice) {
             case 1 :
                 System.out.println("Enter the append string:");
@@ -69,7 +62,7 @@ class Main{
                     }
                 break;
             case 7 :
-                System.out.println("Max repeating Character:"+operation.maxRepeatCharacter());
+                System.out.println("Max repeating Character:"+operation.maxReapetCharacter());
                 break;
             case 8 :
                 System.out.println("Sorted String:"+operation.sort());
@@ -89,10 +82,5 @@ class Main{
                 System.out.println("Invalid choice");
             }       
         }
-            else {
-            System.out.println("Please enter a valid number");
-            userInput.next(); // Clear the invalid input
-            }
-        }
-    }
+    }    
 }

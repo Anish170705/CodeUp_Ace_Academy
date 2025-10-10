@@ -64,6 +64,9 @@
            i++; 
         }
        }
+       if (newString.equals(this.inputString))
+        return "not replaced";
+
        return newString;
     }
     public boolean isPalindrome()
@@ -81,6 +84,9 @@
 
     public String splice(int start,int len)
     {
+        if (start < 0 || start >= this.inputString.length() || len < 0 || (start + len) > this.inputString.length())
+        return "Invalid Input";
+
         int i = 0;
         String ans = "";
         while(i < this.inputString.length())
@@ -115,26 +121,24 @@
         }
         return result;
     }
-    public char maxReapetCharacter()
-    {
-    int[]freq = new int[256];
+    public char maxRepeatCharacter() {
+    if (this.inputString.isEmpty()) return '\0';
+    int[] freq = new int[256];
     int max = 0;
-    char maxchar = ' ';
-    for(int i = 0;i < this.inputString.length();i++)
-    {
+    char maxChar = ' ';
+    for (int i = 0; i < this.inputString.length(); i++) {
         char ch = this.inputString.charAt(i);
-        if(ch != ' '){
+        if (ch != ' ') {
             freq[ch]++;
-            if(freq[ch] > max)
-            {
+            if (freq[ch] > max) {
                 max = freq[ch];
-                maxchar = ch;
+                maxChar = ch;
             }
         }
     }
-    return maxchar;
+    return maxChar;
+  }
 
-}
     public String sort()
     {
         char[] c=this.inputString.toCharArray();
@@ -149,17 +153,17 @@
         }
         return new String(c);
     }
-    public String shift(int choice)
+    public String shift(int number)
     {
         String ans = "";
-        choice = choice % this.inputString.length();
-        if(choice == 0)
+        number = number % this.inputString.length();
+        if(number == 0)
         return this.inputString;
         int n1 = this.inputString.length();
-        for(int i = n1-choice;i < n1;i++){
+        for(int i = n1-number;i < n1;i++){
             ans += this.inputString.charAt(i);
         }
-        for(int i = 0;i < (n1-choice);i++)
+        for(int i = 0;i < (n1-number);i++)
         ans+=this.inputString.charAt(i);
         return ans;
     }
