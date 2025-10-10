@@ -62,7 +62,7 @@ class Main{
                     }
                 break;
             case 7 :
-                System.out.println("Max repeating Character:"+operation.maxReapetCharacter());
+                System.out.println("Max repeating Character:"+operation.maxRepeatCharacter());
                 break;
             case 8 :
                 System.out.println("Sorted String:"+operation.sort());

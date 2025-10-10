@@ -30,8 +30,10 @@ class Main{
         while(true){
             int choice;
             System.out.println("Enter your choice:");
-            choice=userInput.nextInt();
+            if( userInput.hasNextInt() ) {
+            choice = userInput.nextInt();
             userInput.nextLine();
+            
             switch (choice) {
             case 1 :
                 System.out.print("Enter a string: ");
@@ -91,7 +93,11 @@ class Main{
                 return ;       
             default:  
                 System.out.println("Invalid choice");
-            }       
+            } }  
+            else {
+            System.out.println("Please enter a valid number");
+            userInput.next(); // Clear the invalid input
+            }     
         }
     }    
 }
