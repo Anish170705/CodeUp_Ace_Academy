@@ -7,26 +7,26 @@
 public class String_operation {
     
     // Count Unique Palindromes 
-    public int uniquePalindromesCounter(String str) {
-    String[] uniquePalindromes = new String[str.length() * str.length()];
+    public int uniquePalindromesCounter(String intputString) {
+    String[] uniquePalindromes = new String[intputString.length() * intputString.length()];
     int uniqueCount = 0;
 
-    for (int center = 0; center < str.length(); center++) {
-        uniqueCount = expandAndStore(str, center, center, uniquePalindromes, uniqueCount);
+    for (int center = 0; center < intputString.length(); center++) {
+        uniqueCount = expandAndStore(intputString, center, center, uniquePalindromes, uniqueCount);
 
-        uniqueCount = expandAndStore(str, center, center + 1, uniquePalindromes, uniqueCount);
+        uniqueCount = expandAndStore(intputString, center, center + 1, uniquePalindromes, uniqueCount);
     }
 
         return uniqueCount;
     }
 
     // Expand around center and add unique palindromes manually
-    private int expandAndStore(String str, int left, int right, String[] uniqueList, int count) {
-    while (left >= 0 && right < str.length() && str.charAt(left) == str.charAt(right)) {
+    private int expandAndStore(String intputString, int left, int right, String[] uniqueList, int count) {
+    while (left >= 0 && right < intputString.length() && intputString.charAt(left) == intputString.charAt(right)) {
 
         String current = "";
             for (int i = left; i <= right; i++) {
-                current += str.charAt(i);
+                current += intputString.charAt(i);
             }
 
             boolean alreadyExists = false;
@@ -126,18 +126,23 @@ public class String_operation {
     }
 
     //Characters in a String
-    public String expandCharacter(String inputString){
+    public static String expandCharacter(String intputString) {
         String result = "";
-        
-        for(int i = 1;i < inputString.length();i++) {
-            int count = 0;
-            char ch = inputString.charAt(i);
-            while(i < inputString.length() && inputString.charAt(i) >= '0' && inputString.charAt(i) <= '9') {
-                 count = count * 10 + (inputString.charAt(i) - '0');
-                 i++;
-            }
-            for(int j = 0;j < count;j++) {
-                result += ch;
+        int i = 0;
+        while (i < intputString.length()) {
+            char ch = intputString.charAt(i);
+            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
+                i++;
+                int count = 0;
+                while (i < intputString.length() && intputString.charAt(i) >= '0' && intputString.charAt(i) <= '9') {
+                    count = count * 10 + (intputString.charAt(i) - '0');
+                    i++;
+                }
+                for (int j = 0; j < count; j++) {
+                    result += ch;
+                }
+            } else {
+                i++;
             }
         }
         return result;
