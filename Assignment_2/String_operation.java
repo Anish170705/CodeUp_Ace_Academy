@@ -1,6 +1,9 @@
 /**
  * @filename - String_operation.java
- * @Descripiton - This will perform most of the string operation : (e.g- uniquePalindromesCounter, getnthFibonacci,)
+ * @Descripiton - This will perform most of the string operation : (e.g- uniquePalindromesCounter, getnthFibonacci, 
+ *                                                                       convertSnakeToCamel, countConsonants, binaryToDecimal, 
+ *                                                                       expandCharacter, getCharFrequency, isPrime, numberToWords,
+ *                                                                       lengthOfLongestSubstring)
  * @author - Anish Saini
  */
 
