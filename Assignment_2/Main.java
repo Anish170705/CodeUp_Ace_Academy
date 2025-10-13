@@ -49,7 +49,7 @@ class Main {
                     case 2:
                         System.out.print("Enter N: ");
                         int n = userInput.nextInt();
-                        System.out.println("Total no. word :" + operation.fibonacci(n));
+                        System.out.println( n < 0 ? "Invalid input" : "Nth number will be :"+operation.fibonacci(n));
                         break;
                     case 3:
                         System.out.print("Enter snake_case string: ");
@@ -64,8 +64,8 @@ class Main {
                     case 5:
                         System.out.print("Enter binary string: ");
                         String binary = userInput.nextLine();
-                        int decimal = operation.binaryToDecimal(binary);
-                        System.out.println("Decimal: " + decimal);
+                        int decimalValue = operation.binaryToDecimal(binary);
+                        System.out.println(decimalValue == 0 ? "Invalid input" : "Decimal: " + operation.binaryToDecimal(binary));
                         break;
                     case 6:
                         System.out.print("Enter string with characters followed by numbers: ");

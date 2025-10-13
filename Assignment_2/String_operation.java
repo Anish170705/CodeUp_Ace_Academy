@@ -1,81 +1,87 @@
 /**
  * @filename - String_operation.java
- * @Descripiton - This will perform most of the string operation : (e.g-
- *              uniquePalindromesCounter, getnthFibonacci,
- *              convertSnakeToCamel, countConsonants, binaryToDecimal,
- *              expandCharacter, getCharFrequency, isPrime, numberToWords,
- *              lengthOfLongestSubstring)
+ * @Descripiton - This will perform most of the string operation : (e.g- uniquePalindromesCounter, getnthFibonacci, 
+ *                                                                       convertSnakeToCamel, countConsonants, binaryToDecimal, 
+ *                                                                       expandCharacter, getCharFrequency, isPrime, numberToWords,
+ *                                                                       lengthOfLongestSubstring)
  * @author - Anish Saini
  */
 
-public class String_operation {
-
-    // Count Unique Palindromes
-    public int uniquePalindromesCounter(String intputString) {
-        String[] uniquePalindromes = new String[intputString.length() * intputString.length()];
+    public class String_operation {
+    
+    // Count Unique Palindromes 
+        public int uniquePalindromesCounter(String inputString) {
+        String[] uniquePalindromes = new String[inputString.length() * inputString.length()];
         int uniqueCount = 0;
 
-        for (int center = 0; center < intputString.length(); center++) {
-            uniqueCount = expandAndStore(intputString, center, center, uniquePalindromes, uniqueCount);
+        for (int center = 0; center < inputString.length(); center++) {
+            // Odd-length palindromes
+            uniqueCount = expandAndStore(inputString, center, center, uniquePalindromes, uniqueCount);
 
-            uniqueCount = expandAndStore(intputString, center, center + 1, uniquePalindromes, uniqueCount);
+            // Even-length palindromes
+            uniqueCount = expandAndStore(inputString, center, center + 1, uniquePalindromes, uniqueCount);
         }
 
+        System.out.println("\nTotal unique palindromes: " + uniqueCount);
         return uniqueCount;
-    }
+         }
 
     // Expand around center and add unique palindromes manually
-    private int expandAndStore(String intputString, int left, int right, String[] uniqueList, int count) {
-        while (left >= 0 && right < intputString.length() && intputString.charAt(left) == intputString.charAt(right)) {
+        private int expandAndStore(String inputString, int left, int right, String[] uniqueList, int count) {
+            while (left >= 0 && right < inputString.length() && inputString.charAt(left) == inputString.charAt(right)) {
 
-            String current = "";
-            for (int i = left; i <= right; i++) {
-                current += intputString.charAt(i);
-            }
-
-            boolean alreadyExists = false;
-            for (int i = 0; i < count; i++) {
-                if (isSame(uniqueList[i], current)) {
-                    alreadyExists = true;
-                    break;
+                // Build current substring
+                String current = "";
+                for (int i = left; i <= right; i++) {
+                    current += inputString.charAt(i);
                 }
-            }
 
-            if (!alreadyExists) {
-                uniqueList[count] = current;
-                count++;
-            }
+                // Check if already exists
+                boolean alreadyExists = false;
+                for (int i = 0; i < count; i++) {
+                    if (isSame(uniqueList[i], current)) {
+                        alreadyExists = true;
+                        break;
+                    }
+                }
 
-            left--;
-            right++;
-        }
+                // If unique, store and print
+                if (!alreadyExists) {
+                    uniqueList[count] = current;
+                    System.out.println(current);
+                    count++;
+                }
+
+                left--;
+                right++;
+            }
         return count;
     }
 
-    // Compare two strings manually
-    private boolean isSame(String a, String b) {
-        if (a.length() != b.length())
-            return false;
-        for (int i = 0; i < a.length(); i++) {
-            if (a.charAt(i) != b.charAt(i))
-                return false;
+    // Compare two strings manually (without using equals)
+    private boolean isSame(String s1, String s2) {
+        if (s1.length() != s2.length()) return false;
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) return false;
         }
         return true;
     }
 
     // Fibonacci Sequence – Nth Number
-    public int fibonacci(int number) {
-        if (number <= 1)
-            return number;
+    public int fibonacci(int number){
+
+        if(number <= 1)
+        return number;
 
         int answer = -1;
-        int number1 = 0, number2 = 1;
-        for (int i = 2; i <= number; i++) {
+        int number1 = 0,number2 = 1;
+        for(int i = 2;i <= number;i++)
+        {
             answer = number1 + number2;
             number1 = number2;
             number2 = answer;
         }
-        return answer;
+        return answer;      
     }
 
     // Snake Case to Camel Case Conversion
@@ -87,11 +93,11 @@ public class String_operation {
             char ch = snakeCaseString.charAt(i);
 
             if (ch == '_') {
-                toUpper = true;
+                toUpper = true; 
             } else {
                 if (toUpper) {
                     if (ch >= 'a' && ch <= 'z') {
-                        ch = (char) (ch - 32);
+                        ch = (char)(ch - 32);
                     }
                     toUpper = false;
                 }
@@ -102,9 +108,9 @@ public class String_operation {
         return result;
     }
 
-    // Count Consonants in a String
+    //Count Consonants in a String 
 
-    public int countConsonants(String inputString) {
+    public int countConsonants(String inputString){
         int count = 0;
         inputString = inputString.toLowerCase();
         for (int i = 0; i < inputString.length(); i++) {
@@ -116,8 +122,8 @@ public class String_operation {
         return count;
     }
 
-    // Binary to Decimal Conversion
-    public int binaryToDecimal(String binaryString) {
+    //Binary to Decimal Conversion
+    public int binaryToDecimal(String binaryString){
         int decimalValue = 0;
         int base = 1; // 2^0
 
@@ -132,7 +138,7 @@ public class String_operation {
         return decimalValue;
     }
 
-    // Characters in a String
+    //Characters in a String
     public static String expandCharacter(String intputString) {
         String result = "";
         int i = 0;
@@ -155,7 +161,7 @@ public class String_operation {
         return result;
     }
 
-    // character Frequency
+    //character Frequency
     public static String getCharFrequency(String inputString) {
         String result = "";
         int n = inputString.length();
@@ -182,18 +188,17 @@ public class String_operation {
             }
 
             result += ch;
-            result += (char) (count + '0');
+            result += (char)(count + '0');
         }
 
         return result;
     }
-
     // Prime Number checker
-    public boolean isPrime(int number) {
+    public boolean isPrime(int number){
         if (number <= 1) {
             return false;
         }
-        for (int i = 2; i * i <= number; i++) {
+        for (int i = 2; i*i <= number ; i++) {
             if (number % i == 0) {
                 return false;
             }
@@ -201,20 +206,19 @@ public class String_operation {
         return true;
     }
 
-    // Number to words Converter
+    //Number to words Converter
     private static final String[] units = {
-            "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+        "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
     };
 
     private static final String[] teens = {
-            "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
-            "sixteen", "seventeen", "eighteen", "nineteen"
+        "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", 
+        "sixteen", "seventeen", "eighteen", "nineteen"
     };
 
     private static final String[] tens = {
-            "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
+        "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
     };
-
     public static String numberToWords(int num) {
         if (num < 0) {
             return "minus " + numberToWords(-num);
@@ -252,34 +256,45 @@ public class String_operation {
             return "Number too large";
         }
     }
-
+    
     // Returns length of the longest substring without repeating characters
     public static int lengthOfLongestSubstring(String s) {
-        int n = s.length();
-        int maxLength = 0;
+    int n = s.length();
+    int maxLength = 0;
+    int start = 0;     // start of current window
+    int maxStart = 0;  // start index of longest substring
 
-        int[] lastIndex = new int[256];
-        for (int i = 0; i < 256; i++) {
-            lastIndex[i] = -1;
-        }
-
-        int start = 0;
-
-        for (int end = 0; end < n; end++) {
-            char currentChar = s.charAt(end);
-
-            if (lastIndex[currentChar] >= start) {
-                start = lastIndex[currentChar] + 1;
-            }
-
-            lastIndex[currentChar] = end;
-
-            int currentLength = end - start + 1;
-            if (currentLength > maxLength) {
-                maxLength = currentLength;
-            }
-        }
-
-        return maxLength;
+    int[] lastIndex = new int[256];
+    for (int i = 0; i < 256; i++) {
+        lastIndex[i] = -1;
     }
+
+    for (int end = 0; end < n; end++) {
+        char currentChar = s.charAt(end);
+
+        // If character was seen and inside the current window, move start
+        if (lastIndex[currentChar] >= start) {
+            start = lastIndex[currentChar] + 1;
+        }
+
+        // Update last seen index
+        lastIndex[currentChar] = end;
+
+        int currentLength = end - start + 1;
+
+        // If we found a longer substring, record its start and length
+        if (currentLength > maxLength) {
+            maxLength = currentLength;
+            maxStart = start;
+        }
+    }
+
+    // Print the longest substring
+    String longestSubstring = s.substring(maxStart, maxStart + maxLength);
+    System.out.println("Longest substring without repeating characters: " + longestSubstring);
+    System.out.println("Length: " + maxLength);
+
+    return maxLength;
+}
+
 }
